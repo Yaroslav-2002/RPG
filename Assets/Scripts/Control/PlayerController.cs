@@ -13,6 +13,7 @@ namespace RPG.Control
         private void Start()
         {
             _health = GetComponent<Health>();
+            _fighter = GetComponent<Fighter>();
         }
 
         private void Update()
@@ -30,17 +31,14 @@ namespace RPG.Control
                 CombatTarget target = hit.collider.GetComponent<CombatTarget>();
                 
                 if(target == null) continue;
-                
-                if (!_fighter.CanAttack(target.gameObject))
-                {
-                    continue;
-                }
 
-                if (Input.GetMouseButtonDown(0))
+                if (_fighter.CanAttack(target.gameObject))
                 {
-                    GetComponent<Fighter>().Attack(target.gameObject);
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        GetComponent<Fighter>().Attack(target.gameObject);
+                    }
                 }
-
                 return true;
 
             }
@@ -50,11 +48,14 @@ namespace RPG.Control
         private bool InteractWithMovement()
         {
             bool hasHit = Physics.Raycast(GetMouseRay(), out var hit);
-            if (!hasHit) return false;
-            if (Input.GetMouseButton(0))
+            if (hasHit)
             {
-                GetComponent<Mover>().StartMoveAction(hit.point);
+                if (Input.GetMouseButton(0))
+                {
+                    GetComponent<Mover>().StartMoveAction(hit.point);
+                }
             }
+            
                     
             return true;
         }
