@@ -23,7 +23,7 @@ namespace RPG.Combat
 
             if (_target.IsDead()) return;
 
-            if (IsInRange())
+            if (!IsInRange())
             {
                 GetComponent<Mover>().MoveTo(_target.transform.position);
             }
@@ -67,7 +67,7 @@ namespace RPG.Combat
         public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) return false;
-            var targetToTest = combatTarget.GetComponent<Health>();
+            Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
         }
         public void Cancel()
