@@ -139,6 +139,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseDistance: 5
   suspicionTime: 3
+  wayPointDwellTime: 3
+  patrolPath: {fileID: 0}
+  patrolSpeedFraction: 0.2
 --- !u!114 &6759290954170664458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77531cbd584b9c74097d9ea3f3c806f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 5.62
 --- !u!114 &8401563187967857991
 MonoBehaviour:
   m_ObjectHideFlags: 0

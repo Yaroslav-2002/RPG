@@ -25,7 +25,7 @@ namespace RPG.Combat
 
             if (!IsInRange())
             {
-                GetComponent<Mover>().MoveTo(_target.transform.position);
+                GetComponent<Mover>().MoveTo(_target.transform.position, 1f);
             }
             else
             {
@@ -72,9 +72,13 @@ namespace RPG.Combat
         }
         public void Cancel()
         {
+            StopAttackFunc();
+            _target = null;
+            GetComponent<Mover>().Cancel();
+        }
+        private void StopAttackFunc(){
             GetComponent<Animator>().ResetTrigger(StopAttack);
             GetComponent<Animator>().SetTrigger(StopAttack);
-            _target = null;
         }
     }
     }
