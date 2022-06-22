@@ -1155,6 +1155,34 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7747839711011013061, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: _weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: b9d48a06470b81f4c95f1ad15f3a641d, type: 2}
+    - target: {fileID: 7747839711011013061, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: weaponPefab
+      value: 
+      objectReference: {fileID: 270233120183910611, guid: 1eba0e1fb058d7d4eae689b2f5fa0bfa, type: 3}
+    - target: {fileID: 7747839711011013061, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c2a1db6f7dd9b347a0542230d308f5f, type: 2}
+    - target: {fileID: 7747839711011013061, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 4579083210633019312}
+    - target: {fileID: 7747839711011013061, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: weaponOverride
+      value: 
+      objectReference: {fileID: 22100000, guid: ccd4cf4f77b41df40bbfda6850251443, type: 2}
+    - target: {fileID: 7747839711011013061, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: leftHandTransform
+      value: 
+      objectReference: {fileID: 4579083210633076696}
+    - target: {fileID: 7747839711011013061, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: rightHandTransform
+      value: 
+      objectReference: {fileID: 4579083210633019312}
     - target: {fileID: 9209701758979950659, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1300,3 +1328,13 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3f6fc0cf5e5d31c458bc74ede87cb8ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+--- !u!4 &4579083210633019312 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 461188, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+  m_PrefabInstance: {fileID: 4579083210632951348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4579083210633076696 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 403948, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+  m_PrefabInstance: {fileID: 4579083210632951348}
+  m_PrefabAsset: {fileID: 0}

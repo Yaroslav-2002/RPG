@@ -61,6 +61,16 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: bfbe2e8b331e2cc42be1591f949c0e41, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
+--- !u!4 &5225594832582504032 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7960329072250958099, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
+  m_PrefabInstance: {fileID: 2809630225389444979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5225594832582561288 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7960329072250884475, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
+  m_PrefabInstance: {fileID: 2809630225389444979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8077279997971400120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1204,6 +1214,26 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.0032197344
       objectReference: {fileID: 0}
+    - target: {fileID: 7747839711011013061, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: _weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c2a1db6f7dd9b347a0542230d308f5f, type: 2}
+    - target: {fileID: 7747839711011013061, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c2a1db6f7dd9b347a0542230d308f5f, type: 2}
+    - target: {fileID: 7747839711011013061, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 5225594832582504032}
+    - target: {fileID: 7747839711011013061, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: leftHandTransform
+      value: 
+      objectReference: {fileID: 5225594832582561288}
+    - target: {fileID: 7747839711011013061, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: rightHandTransform
+      value: 
+      objectReference: {fileID: 5225594832582504032}
     - target: {fileID: 9209701758979950659, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
       propertyPath: m_RootOrder
       value: 0
