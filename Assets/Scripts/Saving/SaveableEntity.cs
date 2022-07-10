@@ -61,8 +61,7 @@ namespace RPG.Saving
             }
 
             gloabalLookUp[property.stringValue] = this;
-            print("Editing");
-            
+
         }
 
         private bool IsUnique(string candidate)

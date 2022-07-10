@@ -81,7 +81,7 @@ namespace RPG.Saving
            
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
             {
-                state[saveable.GetUniqueIdentifier()]=saveable.CaptureState();
+                state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
             }
 
             state["lastSceneBuildIndex"] = SceneManager.GetActiveScene().buildIndex;

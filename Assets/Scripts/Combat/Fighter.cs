@@ -1,35 +1,52 @@
 ﻿using System;
+using RPG.Attributes;
 using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
-using UnityEngine.Serialization;
+using RPG.Saving;
 
 namespace RPG.Combat
 {
-    public class Fighter:MonoBehaviour,IAction
+    public class Fighter:MonoBehaviour,IAction,ISavable
     {
         private Health _target;
         
         [SerializeField] private Transform rightHandTransform = null;
         [SerializeField] private Transform leftHandTransform = null;
-        [SerializeField] private Weapon defaultWeapon = null;
-        
+        [SerializeField] private Weapon defaultWeapon;
+
+
         private float _timeSinceLastAttack = Mathf.Infinity;
-        private Weapon curentWeapon = null;
+        private Weapon _currentWeapon;
+        
         
         private static readonly int Attack1 = Animator.StringToHash("attack");
         private static readonly int StopAttack = Animator.StringToHash("stopAttack");
 
-        private void Start()
+        private void Awake()
         {
-            EquipWeapon(defaultWeapon);
+            if (_currentWeapon == null)
+            {
+                EquipWeapon(defaultWeapon);
+                Debug.Log("Deafault gun");
+            }
+           
+
         }
 
         public void EquipWeapon(Weapon weapon)
         {
-            curentWeapon = weapon;
+            _currentWeapon = weapon;
             Animator animator = GetComponent<Animator>();
-            weapon.Spawn(rightHandTransform, leftHandTransform, animator);
+            try
+            {
+                weapon.Spawn(rightHandTransform, leftHandTransform, animator);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Debug.Log(e,this);
+            }
         }
 
         private void Update()
@@ -53,7 +70,7 @@ namespace RPG.Combat
         private void AttackBehaviour()
         {
             transform.LookAt(_target.transform);
-            if (_timeSinceLastAttack > curentWeapon.timeBetweenAttacks)
+            if (_timeSinceLastAttack > _currentWeapon.timeBetweenAttacks)
             {
                 //this will trigger the Hit() event
                 GetComponent<Animator>().ResetTrigger(Attack1);
@@ -67,21 +84,25 @@ namespace RPG.Combat
         private void Hit()
         {
             if(_target == null) return;
-            if (curentWeapon.HasProjectile())
+            if (_currentWeapon.HasProjectile())
             {
-                curentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, _target);
+                _currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, _target);
             }
-            _target.TakeDamage(curentWeapon.weaponDamage);
+            else
+            {
+                _target.TakeDamage(_currentWeapon.weaponDamage);
+            }
         }
-
+        
         private void Shoot()
         {
             Hit();
         }
         
+        
         private bool IsInRange()
         {
-            return Vector3.Distance(this.transform.position, _target.transform.position) < curentWeapon.weaponRange;
+            return Vector3.Distance(this.transform.position, _target.transform.position) < _currentWeapon.weaponRange;
         }
 
         public void Attack(GameObject combatTarget)
@@ -104,6 +125,26 @@ namespace RPG.Combat
         private void StopAttackFunc(){
             GetComponent<Animator>().ResetTrigger(StopAttack);
             GetComponent<Animator>().SetTrigger(StopAttack);
+        }
+
+        public object CaptureState()
+        {
+            Debug.Log("Saved gun");
+            return _currentWeapon.name;
+            
+        }
+
+        public void RestoreState(object state)
+        {
+            string weaponName = (string)state;
+            Weapon weapon = Resources.Load<Weapon>(weaponName);
+            EquipWeapon(weapon);
+            Debug.Log("Restored gun");
+        }
+
+        public Health GetTarget()
+        {
+            return _target;
         }
     }
     }

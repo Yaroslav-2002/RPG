@@ -47,6 +47,7 @@ namespace RPG.SceneManagment
             savingWrapper.Load();
             
             Portal otherPortal = GetOtherPortal();
+            
             UpdatePlayer(otherPortal);
             
             savingWrapper.Save();
@@ -56,7 +57,7 @@ namespace RPG.SceneManagment
 
             Destroy(gameObject);
         }
-
+        
         private void UpdatePlayer(Portal otherPortal)
         {
             GameObject player = GameObject.FindWithTag("Player");
