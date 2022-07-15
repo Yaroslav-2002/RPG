@@ -30,8 +30,6 @@ namespace RPG.Combat
                 EquipWeapon(defaultWeapon);
                 Debug.Log("Deafault gun");
             }
-           
-
         }
 
         public void EquipWeapon(Weapon weapon)
@@ -76,7 +74,6 @@ namespace RPG.Combat
                 GetComponent<Animator>().ResetTrigger(Attack1);
                 GetComponent<Animator>().SetTrigger(Attack1);
                 _timeSinceLastAttack = 0;
-                
             }
             
         }
@@ -86,11 +83,11 @@ namespace RPG.Combat
             if(_target == null) return;
             if (_currentWeapon.HasProjectile())
             {
-                _currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, _target);
+                _currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, _target, gameObject);
             }
             else
             {
-                _target.TakeDamage(_currentWeapon.weaponDamage);
+                _target.TakeDamage(gameObject, _currentWeapon.weaponDamage);
             }
         }
         
@@ -133,7 +130,6 @@ namespace RPG.Combat
             return _currentWeapon.name;
             
         }
-
         public void RestoreState(object state)
         {
             string weaponName = (string)state;
@@ -141,7 +137,6 @@ namespace RPG.Combat
             EquipWeapon(weapon);
             Debug.Log("Restored gun");
         }
-
         public Health GetTarget()
         {
             return _target;

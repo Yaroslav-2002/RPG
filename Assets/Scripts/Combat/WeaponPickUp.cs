@@ -23,11 +23,11 @@ namespace RPG.Combat
             if (other.CompareTag("Player"))
             {
                 other.GetComponent<Fighter>().EquipWeapon(weapon);
-                StartCoroutine(HideFoSeconds(respawnTime));
+                StartCoroutine(HideForSeconds(respawnTime));
             }
         }
 
-        private IEnumerator HideFoSeconds(float seconds)
+        private IEnumerator HideForSeconds(float seconds)
         {
             ShowPickUp(false);
             var waitForSeconds = new WaitForSeconds(seconds);
