@@ -1,12 +1,11 @@
-﻿using RPG.Combat;
-using RPG.Saving;
+﻿using RPG.Saving;
 using UnityEngine;
 
-namespace RPG.Attributes
+namespace RPG.Stats
 {
     public class Expirience:MonoBehaviour, ISavable
     {
-        [SerializeField] private float expirience {get; set; }
+        [SerializeField] private float expirience;
 
         public void GainExpirience(float expirience)
         {
@@ -25,7 +24,7 @@ namespace RPG.Attributes
 
         public void RestoreState(object state)
         {
-            expirience = (int)state;
+            expirience = (float)state;
         }
     }
 }

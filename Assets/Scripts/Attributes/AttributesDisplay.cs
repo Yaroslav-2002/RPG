@@ -1,5 +1,6 @@
 ﻿using System;
 using RPG.Combat;
+using RPG.Stats;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -18,6 +19,8 @@ namespace RPG.Attributes
         private Health _healthEnemy;
         private Fighter _fighter;
         private GameObject _player;
+        private BaseStats _baseStats;
+        
         
         private void Start()
         {
@@ -25,6 +28,7 @@ namespace RPG.Attributes
             _healthPlayer = _player.GetComponent<Health>();
             _expirience = _player.GetComponent<Expirience>();
             _fighter = _player.GetComponent<Fighter>();
+            _baseStats = _player.GetComponent<BaseStats>();
         }
         private void Update()
         {
@@ -42,7 +46,7 @@ namespace RPG.Attributes
             hudBar[0].text = $"{PlayerHealth:0}%"; // 0 - player healthBar
             hudBar[1].text = $"{EnemyHealth:0}%"; // 1 - enemy healthBar
             hudBar[2].text = $"{_expirience.GetExperience():0}"; // 2 - exp
-            
+            hudBar[3].text = $"{_baseStats.GetLevel():0}"; // 2 - level
             OldEntityHealth = PlayerHealth;
             
         }

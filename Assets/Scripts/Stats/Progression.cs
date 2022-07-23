@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -17,10 +18,18 @@ namespace RPG.Stats
             return _lookupTable[characterClass][stat][level - 1];
         }
 
+        public int GetLevels(Stat stat, CharacterClass characterClass)
+        {
+            BuildLookup();
+            return _lookupTable[characterClass][stat].Length;
+        }
+        
+
         private void BuildLookup()
         {
-            _lookupTable = new();
             if(_lookupTable != null) return;
+            _lookupTable = new();
+            
             
             foreach (var progressionClass in characterClasses)
             {
