@@ -11,14 +11,18 @@ namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISavable
     {
-        [SerializeField] public float health;
+        public float health = -1f;
         private bool _isDead = false;
         private static readonly int Die1 = Animator.StringToHash("die");
         private float _maxHealth;
 
         private void Awake()
         {
-            health = GetComponent<BaseStats>().GetStat(Stat.Health);
+            if (health < 0)
+            {
+                health = GetComponent<BaseStats>().GetStat(Stat.Health);
+            }
+            
             _maxHealth = health;
         }
 
