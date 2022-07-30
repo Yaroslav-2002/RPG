@@ -28,7 +28,6 @@ namespace RPG.Attributes
 
         public float GetPecentage()
         {
-            print((health / _maxHealth) * 100);
             return (health / _maxHealth) * 100;
         }
         public bool IsDead()
