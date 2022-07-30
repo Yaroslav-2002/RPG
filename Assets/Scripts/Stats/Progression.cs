@@ -23,7 +23,6 @@ namespace RPG.Stats
             BuildLookup();
             return _lookupTable[characterClass][stat].Length;
         }
-        
 
         private void BuildLookup()
         {

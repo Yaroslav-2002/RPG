@@ -16,27 +16,31 @@ namespace RPG.Movement
         private NavMeshAgent _navMesh;
         private static readonly int ForwardSpeed = Animator.StringToHash("ForwardSpeed");
 
+        public object CaptureState() => new SerializbleVector3(transform.position);
+        
         private void Awake()
         {
             _navMesh = GetComponent<NavMeshAgent>();
             _health = GetComponent<Health>();
         }
-
+        
         public void Cancel()
         {
             _navMesh.isStopped = true;
         }
-
+        
         public void StartMoveAction(Vector3 destination, float speedFraction)
         {
             GetComponent<ActionScheduler>().StartAction(this);
             MoveTo(destination, speedFraction);
         }
+        
         private void Update()
         {
             _navMesh.enabled = !_health.IsDead();
             UpdateAnimator();
         }
+        
         public void MoveTo(Vector3 destination, float speedFraction)
         {
             _navMesh.destination = destination;
@@ -44,6 +48,7 @@ namespace RPG.Movement
             _navMesh.isStopped = false;
             
         }
+        
         private void UpdateAnimator()
         {
             _velocity = _navMesh.velocity;
@@ -51,12 +56,6 @@ namespace RPG.Movement
             _speed = _localVelocity.z;
             GetComponent<Animator>().SetFloat(ForwardSpeed, _speed);
         }
-
-        public object CaptureState()
-        {
-            return new SerializbleVector3(transform.position);
-        }
-
         public void RestoreState(object state)
         {
             SerializbleVector3 position = (SerializbleVector3)state;

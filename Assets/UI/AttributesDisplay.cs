@@ -1,11 +1,10 @@
-﻿using System;
+﻿using RPG.Attributes;
 using RPG.Combat;
 using RPG.Stats;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace RPG.Attributes
+namespace RPG.UI
 {
     public class AttributesDisplay : MonoBehaviour
     {
@@ -22,7 +21,7 @@ namespace RPG.Attributes
         private BaseStats _baseStats;
         
         
-        private void Start()
+        private void Awake()
         {
             _player = GameObject.FindWithTag("Player");
             _healthPlayer = _player.GetComponent<Health>();
@@ -32,7 +31,7 @@ namespace RPG.Attributes
         }
         private void Update()
         {
-            PlayerHealth = _healthPlayer.GetPecentage();
+            PlayerHealth = _healthPlayer.GetHealthpoints();
             _healthEnemy = _fighter.GetTarget();
             
             if (_healthEnemy == null)
@@ -41,9 +40,9 @@ namespace RPG.Attributes
             }
             else
             {
-                EnemyHealth = _healthEnemy.GetPecentage();
+                EnemyHealth = _healthEnemy.GetHealthpoints();
             }
-            hudBar[0].text = $"{PlayerHealth:0}%"; // 0 - player healthBar
+            hudBar[0].text = $"{PlayerHealth:0}/{_healthPlayer.GetMaxHealth():0}"; // 0 - player healthBar
             hudBar[1].text = $"{EnemyHealth:0}%"; // 1 - enemy healthBar
             hudBar[2].text = $"{_expirience.GetExperience():0}"; // 2 - exp
             hudBar[3].text = $"{_baseStats.GetLevel():0}"; // 2 - level

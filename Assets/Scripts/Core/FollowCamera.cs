@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace RPG.Core
@@ -15,7 +14,6 @@ namespace RPG.Core
             PlayerStartposition = player.position;
         }  
         
-
         private void LateUpdate()
         {
             var position = player.position;

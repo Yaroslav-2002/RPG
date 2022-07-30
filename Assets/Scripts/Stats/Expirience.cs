@@ -1,33 +1,34 @@
 ﻿using System;
 using RPG.Saving;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RPG.Stats
 {
     public class Expirience:MonoBehaviour, ISavable
     {
         public event Action OnExpirienceChange;
-        [SerializeField] private float expirience;
+        [SerializeField] private float _expirience;
 
         public void GainExpirience(float expirience)
         {
-            this.expirience += expirience;
+            _expirience += expirience;
             if (OnExpirienceChange != null) OnExpirienceChange();
         }
 
         public float GetExperience()
         {
-            return expirience;
+            return _expirience;
         }
 
         public object CaptureState()
         {
-            return expirience;
+            return _expirience;
         }
 
         public void RestoreState(object state)
         {
-            expirience = (float)state;
+            _expirience = (float)state;
         }
     }
 }

@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Cinemachine;
-using RPG.Core;
+﻿using System.Collections.Generic;
 using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.PlayerLoop;
 
 namespace RPG.Saving
 {
@@ -16,11 +9,8 @@ namespace RPG.Saving
     {
         [SerializeField] private string uniqueIdentifier = string.Empty;
         private static Dictionary<string, SaveableEntity> gloabalLookUp = new Dictionary<string, SaveableEntity>();
-        public string GetUniqueIdentifier()
-        {
-            return uniqueIdentifier;
-        }
-
+        public string GetUniqueIdentifier() => uniqueIdentifier;
+        
         public object CaptureState()
         {
             Dictionary<string, object> state = new Dictionary<string, object>();
@@ -41,10 +31,7 @@ namespace RPG.Saving
                 {
                     savable.RestoreState(stateDict[typeString]);
                 }
-                
-                
             }
-            
         }
 #if UNITY_EDITOR
         private void Update()
@@ -59,7 +46,7 @@ namespace RPG.Saving
                 property.stringValue = System.Guid.NewGuid().ToString();
                 serializedObject.ApplyModifiedProperties();
             }
-
+            
             gloabalLookUp[property.stringValue] = this;
 
         }

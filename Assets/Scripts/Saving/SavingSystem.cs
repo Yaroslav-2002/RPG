@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 
 namespace RPG.Saving
 {
@@ -23,9 +20,9 @@ namespace RPG.Saving
                     yield return SceneManager.LoadSceneAsync(buildIndex);
                 }
             }
-           
             RestoreState(state);
         }
+        
         public void Save(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);
@@ -43,7 +40,6 @@ namespace RPG.Saving
                 formatter.Serialize(stream, capturedState);
             }
         }
-
 
         public void Load(string saveFile)
         {

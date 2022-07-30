@@ -1,42 +1,37 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using RPG.Core;
 using RPG.Saving;
 using RPG.Stats;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISavable
     {
-        public float health = -1f;
-        private bool _isDead = false;
         private static readonly int Die1 = Animator.StringToHash("die");
+        public float health = -1f;
         private float _maxHealth;
-
+        private bool _isDead = false;
+        private BaseStats _baseStats;
+        public object CaptureState() => health;
+        public float GetMaxHealth() => _maxHealth;
+        public float GetPecentage() => (health / _maxHealth) * 100;
+        public float GetHealthpoints() => health;
+        public bool IsDead() => _isDead;
+        
         private void Awake()
         {
+            _baseStats = GetComponent<BaseStats>();
             if (health < 0)
             {
-                health = GetComponent<BaseStats>().GetStat(Stat.Health);
+                health = _baseStats.GetStat(Stat.Health);
             }
-            
+
+            _baseStats.OnLevelUp += SetMaxHealth;
             _maxHealth = health;
         }
-
-        public float GetPecentage()
-        {
-            return (health / _maxHealth) * 100;
-        }
-        public bool IsDead()
-        {
-            return _isDead;
-        }
-
         public void TakeDamage(GameObject instigator, float damage)
         {
+            print(gameObject.name + "took damage: " + damage);
             health = Mathf.Max(health- damage,0 );
 
             if (health == 0)
@@ -44,7 +39,11 @@ namespace RPG.Attributes
                 Die();
                 AwardExpirience(instigator);
             }
-            
+        }
+        
+        private void SetMaxHealth()
+        {
+            health = _maxHealth;
         }
 
         private void AwardExpirience(GameObject instigator)
@@ -61,23 +60,16 @@ namespace RPG.Attributes
             _isDead = true;
             GetComponent<Animator>().SetTrigger(Die1);
             GetComponent<ActionScheduler>().CancelCurrentAction();
-            
         }
 
-        public object CaptureState()
-        {
-            return health;
-        }
+        
 
         public void RestoreState(object state)
         {
             health = (float)state;
             if (health <= 0) 
                 Die();
-            
         }
-
-      
     }
 }
 

@@ -63,7 +63,7 @@ namespace RPG.Control
         private static Ray GetMouseRay()
         {
             if (Camera.main == null) print("camera is missing");
-            return Camera.main.ScreenPointToRay(Input.mousePosition);
+            return Camera.main!.ScreenPointToRay(Input.mousePosition);
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 
 namespace RPG.SceneManagment
@@ -14,13 +15,12 @@ namespace RPG.SceneManagment
         }
         
         [SerializeField] private int sceneToLoad = -1;
-        [SerializeField] public Transform Spawnpoint;
+        [SerializeField] public Transform spawnpoint;
         [SerializeField] private DestinationIdentifier destination;
-        [SerializeField] private float FadeInTime = 0.2f;
-        [SerializeField] private float FadeOutTime = 0.2f;
-        [SerializeField] private float FadeWaitTime = 0.1f;
+        [SerializeField] private float fadeInTime = 0.2f;
+        [SerializeField] private float fadeOutTime = 0.2f;
+        [SerializeField] private float fadeWaitTime = 0.1f;
         
-
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -36,7 +36,7 @@ namespace RPG.SceneManagment
             Fader fader = FindObjectOfType<Fader>();
             SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
 
-            yield return fader.FadeOut(FadeOutTime);
+            yield return fader.FadeOut(fadeOutTime);
             
             savingWrapper.Save();
 
@@ -50,8 +50,8 @@ namespace RPG.SceneManagment
             
             savingWrapper.Save();
             
-            yield return new WaitForSeconds(FadeWaitTime);
-            yield return fader.FadeIn(FadeInTime);
+            yield return new WaitForSeconds(fadeWaitTime);
+            yield return fader.FadeIn(fadeInTime);
 
             Destroy(gameObject);
         }
@@ -60,8 +60,8 @@ namespace RPG.SceneManagment
         {
             GameObject player = GameObject.FindWithTag("Player");
             player.GetComponent<NavMeshAgent>().enabled = false;
-            player.GetComponent<NavMeshAgent>().Warp(otherPortal.Spawnpoint.position);
-            player.transform.rotation = otherPortal.Spawnpoint.rotation;
+            player.GetComponent<NavMeshAgent>().Warp(otherPortal.spawnpoint.position);
+            player.transform.rotation = otherPortal.spawnpoint.rotation;
             player.GetComponent<NavMeshAgent>().enabled = true;
 
         }

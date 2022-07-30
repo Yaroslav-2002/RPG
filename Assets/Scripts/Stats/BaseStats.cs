@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace RPG.Stats
@@ -7,11 +8,16 @@ namespace RPG.Stats
         [Range(1, 99)] [SerializeField] private int startingLevel = 1;
         [SerializeField] private CharacterClass characterClass;
         [SerializeField] private Progression progression;
-
+        [SerializeField] private GameObject levelUpParticle;
+        
         private float _xPtoLevelUp;
         private Expirience _currentExperience;
         private float _experienceValue;
         private int? _currentLevel;
+        public event Action OnLevelUp;
+        
+        public float GetStat(Stat stat) => progression.GetStat(stat, characterClass, GetLevel());
+        
         private void Awake()
         {
             _currentExperience = GetComponent<Expirience>();
@@ -27,12 +33,16 @@ namespace RPG.Stats
                 _currentLevel = newLevel;
                 print("Levelled up");
             }
-        }
-        public float GetStat(Stat stat)
-        {
-            return progression.GetStat(stat, characterClass, GetLevel());
+            OnLevelUp?.Invoke();
+            LevelUpEffect();
+
         }
 
+        private void LevelUpEffect()
+        {
+            Instantiate(levelUpParticle, transform);
+        }
+        
         public int GetLevel()
         {
             if (_currentLevel == null) _currentLevel = CalculateLevel();
@@ -57,7 +67,6 @@ namespace RPG.Stats
                     return level;
                 }
             }
-
             return maxLevel;
         }
 

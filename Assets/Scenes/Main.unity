@@ -5880,7 +5880,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -7419,6 +7418,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7815219336206445039, guid: d8d804fcee1267a40a3becdb3ad28cab, type: 3}
+      propertyPath: levelUpParticle
+      value: 
+      objectReference: {fileID: 1616899667215450843, guid: fb4f79e69230c6043a8e15f713987792, type: 3}
     - target: {fileID: 8251014971617249570, guid: d8d804fcee1267a40a3becdb3ad28cab, type: 3}
       propertyPath: m_Radius
       value: 0.1

@@ -4,24 +4,23 @@ using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
 using RPG.Saving;
+using RPG.Stats;
 
 namespace RPG.Combat
 {
     public class Fighter:MonoBehaviour,IAction,ISavable
     {
-        private Health _target;
-        
-        [SerializeField] private Transform rightHandTransform = null;
-        [SerializeField] private Transform leftHandTransform = null;
+        [SerializeField] private Transform rightHandTransform;
+        [SerializeField] private Transform leftHandTransform;
         [SerializeField] private Weapon defaultWeapon;
-
-
-        private float _timeSinceLastAttack = Mathf.Infinity;
+        private Health _target;
         private Weapon _currentWeapon;
-        
-        
+        private float _timeSinceLastAttack = Mathf.Infinity;
         private static readonly int Attack1 = Animator.StringToHash("attack");
         private static readonly int StopAttack = Animator.StringToHash("stopAttack");
+        
+        public Health GetTarget() =>_target;
+        public object CaptureState() => _currentWeapon.name;
 
         private void Awake()
         {
@@ -81,13 +80,15 @@ namespace RPG.Combat
         private void Hit()
         {
             if(_target == null) return;
+            
+            var damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
             if (_currentWeapon.HasProjectile())
             {
-                _currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, _target, gameObject);
+                _currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, _target, gameObject, damage);
             }
             else
             {
-                _target.TakeDamage(gameObject, _currentWeapon.weaponDamage);
+                _target.TakeDamage(gameObject, damage);
             }
         }
         
@@ -95,7 +96,6 @@ namespace RPG.Combat
         {
             Hit();
         }
-        
         
         private bool IsInRange()
         {
@@ -107,29 +107,26 @@ namespace RPG.Combat
             GetComponent<ActionScheduler>().StartAction(this);
             _target = combatTarget.GetComponent<Health>();
         }
+        
         public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
         }
+        
         public void Cancel()
         {
             StopAttackFunc();
             _target = null;
             GetComponent<Mover>().Cancel();
         }
+        
         private void StopAttackFunc(){
             GetComponent<Animator>().ResetTrigger(StopAttack);
             GetComponent<Animator>().SetTrigger(StopAttack);
         }
-
-        public object CaptureState()
-        {
-            Debug.Log("Saved gun");
-            return _currentWeapon.name;
-            
-        }
+        
         public void RestoreState(object state)
         {
             string weaponName = (string)state;
@@ -137,11 +134,7 @@ namespace RPG.Combat
             EquipWeapon(weapon);
             Debug.Log("Restored gun");
         }
-        public Health GetTarget()
-        {
-            return _target;
-        }
     }
-    }
+}
     
     
