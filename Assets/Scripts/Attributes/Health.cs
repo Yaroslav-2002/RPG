@@ -1,3 +1,4 @@
+using System;
 using RPG.Core;
 using RPG.Saving;
 using RPG.Stats;
@@ -21,14 +22,27 @@ namespace RPG.Attributes
         private void Awake()
         {
             _baseStats = GetComponent<BaseStats>();
+        }
+
+        private void OnEnable()
+        {
+            _baseStats.OnLevelUp += SetMaxHealth;
+        }
+
+        private void OnDisable()
+        {
+            _baseStats.OnLevelUp -= SetMaxHealth;
+        }
+
+        private void Start()
+        {
             if (health < 0)
             {
                 health = _baseStats.GetStat(Stat.Health);
             }
-
-            _baseStats.OnLevelUp += SetMaxHealth;
             _maxHealth = health;
         }
+
         public void TakeDamage(GameObject instigator, float damage)
         {
             print(gameObject.name + "took damage: " + damage);
@@ -61,9 +75,7 @@ namespace RPG.Attributes
             GetComponent<Animator>().SetTrigger(Die1);
             GetComponent<ActionScheduler>().CancelCurrentAction();
         }
-
         
-
         public void RestoreState(object state)
         {
             health = (float)state;

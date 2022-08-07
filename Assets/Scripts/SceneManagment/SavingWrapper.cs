@@ -17,6 +17,10 @@ namespace RPG.SceneManagment
             _enumerator = _savingSystem.LoadLastScene(DefaultSaveFile);
             _savingSystem = GetComponent<SavingSystem>();
             _fade = FindObjectOfType<Fader>();
+        }
+
+        private void Start()
+        {
             StartCoroutine(LoadLastScene());
         }
 

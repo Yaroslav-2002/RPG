@@ -1,48 +1,97 @@
 using RPG.Attributes;
 using RPG.Combat;
+using RPG.cotrol;
 using UnityEngine;
 using RPG.Movement;
+using UnityEngine.EventSystems;
 
 namespace RPG.Control
 {
     public class PlayerController : MonoBehaviour
     {
-        private Fighter _fighter;
         private Health _health;
 
-        private void Start()
+        enum CursorType
+        {
+            None,
+            Movement,
+            Combat,
+            OverUI
+        }
+        
+        [System.Serializable]
+        struct CursorMapping
+        {
+            public CursorType type;
+            public UnityEngine.Vector2 hotspot;
+            public Texture2D texture;
+        }
+
+        
+        [SerializeField] private CursorMapping[] cursorMappings = null;
+        private void Awake()
         {
             _health = GetComponent<Health>();
-            _fighter = GetComponent<Fighter>();
+            GetComponent<Fighter>();
         }
 
         private void Update()
         {
-            if (_health.IsDead()) return;
-            if(InteractWithCombat()) return;
-            if(InteractWithMovement()) return;
+            if (InteractWithUI()) return;
+            if (_health.IsDead())
+            {
+                SetCursor(CursorType.None);
+                return;
+            }
+            if (InteractWithComponent()) return;
+            if (InteractWithMovement()) return;
+            SetCursor(CursorType.None);
         }
 
-        private bool InteractWithCombat()
+        private bool InteractWithUI()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                SetCursor(CursorType.OverUI);
+                return true;
+            }
+            return false;
+        }
+        public bool InteractWithComponent()
         {
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             foreach (var hit in hits)
             {
-                CombatTarget target = hit.collider.GetComponent<CombatTarget>();
-                
-                if(target == null) continue;
-
-                if (_fighter.CanAttack(target.gameObject))
+                IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
+                foreach (var component in raycastables)
                 {
-                    if (Input.GetMouseButton(0))
+                    if (component.HandleRaycast(this))
                     {
-                        GetComponent<Fighter>().Attack(target.gameObject);
+                        SetCursor(CursorType.Combat);
+                        return true;
                     }
                 }
                 return true;
-
             }
             return false;
+        }
+        
+
+        private void SetCursor(CursorType type)
+        {
+            CursorMapping mapping = GetCursorMapping(type);
+            Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
+        }
+
+        private CursorMapping GetCursorMapping(CursorType type)
+        {
+            CursorMapping defaultCursormapping = cursorMappings[0];
+            foreach (var cursorMapping in cursorMappings)
+            {
+                if (cursorMapping.type == type) return cursorMapping;
+            }
+
+            return defaultCursormapping;
         }
 
         private bool InteractWithMovement()
@@ -56,7 +105,7 @@ namespace RPG.Control
                 }
             }
             
-                    
+            SetCursor(CursorType.Movement);
             return true;
         }
 
@@ -65,5 +114,7 @@ namespace RPG.Control
             if (Camera.main == null) print("camera is missing");
             return Camera.main!.ScreenPointToRay(Input.mousePosition);
         }
+
+       
     }
 }

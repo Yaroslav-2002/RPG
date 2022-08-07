@@ -9,6 +9,7 @@ namespace RPG.Combat
     {
         public float weaponRange = 2f;
         public float weaponDamage = 15f;
+        public float weaponPercentageBonus = 0f;
         public float timeBetweenAttacks = 1f;
         
         [SerializeField] private AnimatorOverrideController weaponOverride = null;
@@ -17,6 +18,8 @@ namespace RPG.Combat
         [SerializeField] private Projectile projectile = null;
 
         private const string WeaponName = "Weapon";
+        
+        public float GetPercentageBonus() => weaponPercentageBonus;
 
         public void Spawn(Transform rightHand,Transform leftHand, Animator animator)
         {
@@ -64,7 +67,7 @@ namespace RPG.Combat
         {
             return projectile != null;
         }
-
+        
         public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject instigator, float calculatedDamage)
         {
             Projectile projectileInstance =

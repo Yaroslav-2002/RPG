@@ -7270,6 +7270,42 @@ PrefabInstance:
       propertyPath: defaultWeapon
       value: 
       objectReference: {fileID: 11400000, guid: b9d48a06470b81f4c95f1ad15f3a641d, type: 2}
+    - target: {fileID: 1662729191199164372, guid: d8d804fcee1267a40a3becdb3ad28cab, type: 3}
+      propertyPath: cursorMappings.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662729191199164372, guid: d8d804fcee1267a40a3becdb3ad28cab, type: 3}
+      propertyPath: cursorMappings.Array.data[0].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662729191199164372, guid: d8d804fcee1267a40a3becdb3ad28cab, type: 3}
+      propertyPath: cursorMappings.Array.data[1].type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662729191199164372, guid: d8d804fcee1267a40a3becdb3ad28cab, type: 3}
+      propertyPath: cursorMappings.Array.data[2].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662729191199164372, guid: d8d804fcee1267a40a3becdb3ad28cab, type: 3}
+      propertyPath: cursorMappings.Array.data[3].type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662729191199164372, guid: d8d804fcee1267a40a3becdb3ad28cab, type: 3}
+      propertyPath: cursorMappings.Array.data[0].texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 2d18e23e3ce249b4489b8bcdd02d3f48, type: 3}
+    - target: {fileID: 1662729191199164372, guid: d8d804fcee1267a40a3becdb3ad28cab, type: 3}
+      propertyPath: cursorMappings.Array.data[1].texture
+      value: 
+      objectReference: {fileID: 2800000, guid: fe2443101ded6f544b32f8dc8690c367, type: 3}
+    - target: {fileID: 1662729191199164372, guid: d8d804fcee1267a40a3becdb3ad28cab, type: 3}
+      propertyPath: cursorMappings.Array.data[2].texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 2e71a8202d3b4a3448ec85ced5a40265, type: 3}
+    - target: {fileID: 1662729191199164372, guid: d8d804fcee1267a40a3becdb3ad28cab, type: 3}
+      propertyPath: cursorMappings.Array.data[3].texture
+      value: 
+      objectReference: {fileID: 2800000, guid: f8c873f1e53e83f4aabf342d6be1dfc3, type: 3}
     - target: {fileID: 2236832981267803477, guid: d8d804fcee1267a40a3becdb3ad28cab, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.31

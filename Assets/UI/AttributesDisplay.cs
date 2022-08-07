@@ -43,7 +43,7 @@ namespace RPG.UI
                 EnemyHealth = _healthEnemy.GetHealthpoints();
             }
             hudBar[0].text = $"{PlayerHealth:0}/{_healthPlayer.GetMaxHealth():0}"; // 0 - player healthBar
-            hudBar[1].text = $"{EnemyHealth:0}%"; // 1 - enemy healthBar
+            hudBar[1].text = $"{EnemyHealth:0}"; // 1 - enemy healthBar
             hudBar[2].text = $"{_expirience.GetExperience():0}"; // 2 - exp
             hudBar[3].text = $"{_baseStats.GetLevel():0}"; // 2 - level
             OldEntityHealth = PlayerHealth;

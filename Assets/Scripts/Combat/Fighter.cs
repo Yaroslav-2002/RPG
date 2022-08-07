@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RPG.Attributes;
 using UnityEngine;
 using RPG.Movement;
@@ -8,7 +9,7 @@ using RPG.Stats;
 
 namespace RPG.Combat
 {
-    public class Fighter:MonoBehaviour,IAction,ISavable
+    public class Fighter:MonoBehaviour, IAction, ISavable, IModifierProvider
     {
         [SerializeField] private Transform rightHandTransform;
         [SerializeField] private Transform leftHandTransform;
@@ -133,6 +134,22 @@ namespace RPG.Combat
             Weapon weapon = Resources.Load<Weapon>(weaponName);
             EquipWeapon(weapon);
             Debug.Log("Restored gun");
+        }
+
+        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+                yield return _currentWeapon.weaponDamage;
+            }
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+                yield return _currentWeapon.GetPercentageBonus();
+            }
         }
     }
 }

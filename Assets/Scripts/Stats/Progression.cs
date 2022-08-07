@@ -12,10 +12,10 @@ namespace RPG.Stats
         [SerializeField] private ProgressionCharacterClass[] characterClasses;
 
         private Dictionary<CharacterClass, Dictionary<Stat, float[]>> _lookupTable = null;
-        public float GetStat(Stat stat, CharacterClass characterClass, int level)
+        public float GetStat(Stat stat, CharacterClass characterClass, float level)
         {
             BuildLookup();
-            return _lookupTable[characterClass][stat][level - 1];
+            return _lookupTable[characterClass][stat][(int)(level - 1)];
         }
 
         public int GetLevels(Stat stat, CharacterClass characterClass)
