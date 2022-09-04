@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100/100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -144,10 +144,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5685433458654331470}
+  - component: {fileID: 6876368460920648089}
   - component: {fileID: 7454653936822696659}
   - component: {fileID: 991898505774631407}
   - component: {fileID: 7595696748306469994}
-  - component: {fileID: 6876368460920648089}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -174,8 +174,8 @@ RectTransform:
   - {fileID: 8332618522955815378}
   - {fileID: 4056498966078058463}
   - {fileID: 3266723647007691077}
-  - {fileID: 2715529929229960535}
   - {fileID: 6754616189683412452}
+  - {fileID: 2715529929229960535}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -184,6 +184,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &6876368460920648089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591855041509211574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1378221f9ea74527aae060ffeaf048f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudBar:
+  - {fileID: 6900812819916019470}
+  - {fileID: 1831748024054023725}
+  - {fileID: 7089524833564299570}
+  - {fileID: 3672062651855401973}
 --- !u!223 &7454653936822696659
 Canvas:
   m_ObjectHideFlags: 0
@@ -201,7 +218,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 29
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -245,23 +262,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6876368460920648089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2591855041509211574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1378221f9ea74527aae060ffeaf048f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hudBar:
-  - {fileID: 6900812819916019470}
-  - {fileID: 1831748024054023725}
-  - {fileID: 7089524833564299570}
-  - {fileID: 3672062651855401973}
 --- !u!1 &2678358169838469834
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +504,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5685433458654331470}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1179,7 +1179,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5685433458654331470}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

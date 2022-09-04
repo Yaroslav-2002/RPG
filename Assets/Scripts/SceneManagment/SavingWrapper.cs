@@ -14,8 +14,8 @@ namespace RPG.SceneManagment
         
         private void Awake()
         {
-            _enumerator = _savingSystem.LoadLastScene(DefaultSaveFile);
             _savingSystem = GetComponent<SavingSystem>();
+            _enumerator = _savingSystem.LoadLastScene(DefaultSaveFile);
             _fade = FindObjectOfType<Fader>();
         }
 

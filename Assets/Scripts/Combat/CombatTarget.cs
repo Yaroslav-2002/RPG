@@ -1,4 +1,5 @@
-﻿using RPG.Attributes;
+﻿using Control;
+using RPG.Attributes;
 using RPG.Control;
 using RPG.cotrol;
 using UnityEngine;
@@ -10,14 +11,18 @@ namespace RPG.Combat
     {
         public bool HandleRaycast(PlayerController controller)
         {
-            Fighter _fighter = controller.GetComponent<Fighter>();
-            if (!_fighter.CanAttack(gameObject)) return false;
+            if (!controller.GetComponent<Fighter>().CanAttack(gameObject)) return false;
 
             if (Input.GetMouseButton(0))
             {
-                GetComponent<Fighter>().Attack(gameObject);
+                controller.GetComponent<Fighter>().Attack(gameObject);
             }
             return true;
+        }
+
+        public CursorType GetCursorType()
+        {
+            return CursorType.Combat;
         }
     }
 }

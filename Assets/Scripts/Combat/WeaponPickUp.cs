@@ -1,4 +1,5 @@
 using System.Collections;
+using Control;
 using RPG.Control;
 using RPG.cotrol;
 using UnityEngine;
@@ -52,8 +53,16 @@ namespace RPG.Combat
 
         public bool HandleRaycast(PlayerController controller)
         {
-            PickUp(controller.GetComponent<Fighter>());
+            if (Input.GetMouseButtonDown(0))
+            {
+                PickUp(controller.GetComponent<Fighter>());
+            }
             return true;
+        }
+
+        public CursorType GetCursorType()
+        {
+            return CursorType.WeaponPickUp;
         }
     }
 }

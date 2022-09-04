@@ -77,11 +77,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: -1
-  Spawnpoint: {fileID: 2992804481906670850}
+  spawnpoint: {fileID: 2992804481906670850}
   destination: 0
-  FadeInTime: 0.2
-  FadeOutTime: 0.2
-  FadeWaitTime: 0.1
+  fadeInTime: 0.2
+  fadeOutTime: 0.2
+  fadeWaitTime: 0.1
 --- !u!1 &6406648835130614817
 GameObject:
   m_ObjectHideFlags: 0

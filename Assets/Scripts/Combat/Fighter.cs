@@ -16,6 +16,8 @@ namespace RPG.Combat
         [SerializeField] private Weapon defaultWeapon;
         private Health _target;
         private Weapon _currentWeapon;
+        private Mover _mover;
+        private Animator _animator;
         private float _timeSinceLastAttack = Mathf.Infinity;
         private static readonly int Attack1 = Animator.StringToHash("attack");
         private static readonly int StopAttack = Animator.StringToHash("stopAttack");
@@ -23,22 +25,28 @@ namespace RPG.Combat
         public Health GetTarget() =>_target;
         public object CaptureState() => _currentWeapon.name;
 
+        public event Action OnTargetChange;
+
         private void Awake()
+        { 
+            _mover = GetComponent<Mover>();
+            _animator = GetComponent<Animator>();
+        }
+
+        private void Start()
         {
             if (_currentWeapon == null)
             {
                 EquipWeapon(defaultWeapon);
-                Debug.Log("Deafault gun");
             }
         }
 
         public void EquipWeapon(Weapon weapon)
         {
             _currentWeapon = weapon;
-            Animator animator = GetComponent<Animator>();
             try
             {
-                weapon.Spawn(rightHandTransform, leftHandTransform, animator);
+                weapon.Spawn(rightHandTransform, leftHandTransform, _animator);
             }
             catch (Exception e)
             {
@@ -51,16 +59,16 @@ namespace RPG.Combat
         {
             _timeSinceLastAttack += Time.deltaTime;
             if (_target == null) return;
-
             if (_target.IsDead()) return;
-
+            
             if (!IsInRange())
             {
-                GetComponent<Mover>().MoveTo(_target.transform.position, 1f);
+                OnTargetChange?.Invoke();
+                _mover.MoveTo(_target.transform.position, 1f);
             }
             else
             {
-                GetComponent<Mover>().Cancel();
+                _mover.Cancel();
                 AttackBehaviour();
             }
         }
@@ -71,8 +79,8 @@ namespace RPG.Combat
             if (_timeSinceLastAttack > _currentWeapon.timeBetweenAttacks)
             {
                 //this will trigger the Hit() event
-                GetComponent<Animator>().ResetTrigger(Attack1);
-                GetComponent<Animator>().SetTrigger(Attack1);
+                _animator.ResetTrigger(Attack1);
+                _animator.SetTrigger(Attack1);
                 _timeSinceLastAttack = 0;
             }
             
@@ -124,8 +132,8 @@ namespace RPG.Combat
         }
         
         private void StopAttackFunc(){
-            GetComponent<Animator>().ResetTrigger(StopAttack);
-            GetComponent<Animator>().SetTrigger(StopAttack);
+            _animator.ResetTrigger(StopAttack);
+            _animator.SetTrigger(StopAttack);
         }
         
         public void RestoreState(object state)

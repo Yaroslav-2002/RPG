@@ -15,27 +15,39 @@ namespace RPG.SceneManagment
 
         public void FadeOutImidiate()
         {
-            _canvasGroup.alpha = 1;
+            _canvasGroup.alpha = 0;
         }
         
-        public IEnumerator FadeOut(float time)
+        private Coroutine _currrentlyActiveFade;
+        public Coroutine FadeOut(float time)
         {
-            while (_canvasGroup.alpha < 1)
+            return Fade(1, time);
+        }
+        
+        public Coroutine FadeIn(float time)
+        {
+            return Fade(0, time);
+        }
+        
+        private IEnumerator FadeRoutine(float target, float time)
+        {
+            while (!Mathf.Approximately(_canvasGroup.alpha , target))
             {
-                _canvasGroup.alpha += Time.deltaTime / time;
+                _canvasGroup.alpha = Mathf.MoveTowards(_canvasGroup.alpha, target, Time.deltaTime / time);
                 yield return null;
             }
         }
-        
-        public IEnumerator FadeIn(float time)
+
+        public Coroutine Fade(float target, float time)
         {
-            while (_canvasGroup.alpha > 0)
+            if (_currrentlyActiveFade != null)
             {
-                _canvasGroup.alpha -= Time.deltaTime / time;
-                yield return null;
+                StopCoroutine(_currrentlyActiveFade);
             }
+            _currrentlyActiveFade = StartCoroutine(FadeRoutine(target, time));
+            return _currrentlyActiveFade;
         }
-   
+
     }
 
 }
