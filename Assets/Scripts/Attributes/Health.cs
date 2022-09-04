@@ -10,7 +10,8 @@ namespace RPG.Attributes
     public class Health : MonoBehaviour, ISavable
     {
         [SerializeField] private TakeDamageEvent takeDamage;
-        [Serializable]
+        
+        [System.Serializable]
         public class TakeDamageEvent : UnityEvent<float>
         {
             

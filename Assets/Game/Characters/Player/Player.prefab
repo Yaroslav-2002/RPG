@@ -15,6 +15,34 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 965141ee17cd80d4b8f051814f4dce13, type: 2}
+    - target: {fileID: -3253301473908777845, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3253301473908777845, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -3253301473908777845, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11500000, guid: 29c4bc9f7815c7848b611046f599bca4, type: 3}
+    - target: {fileID: -3253301473908777845, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3253301473908777845, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -3253301473908777845, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: -3253301473908777845, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 932233232870756495, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1155,6 +1183,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.0032197344
       objectReference: {fileID: 0}
+    - target: {fileID: 5308066395415986681, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6759290954170664458, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1282,6 +1314,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d5e9dffbb78afe4eab823eb584f97fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorMappings: []
+  maxNavMeshProjectionDistance: 1
+  MaxNavPathLength: 40
 --- !u!114 &8641512926171434244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1294,7 +1329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345a259740c349c9857dde3e025f4ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expirience: 0
+  _expirience: 0
 --- !u!4 &6355369619368586696 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9209701758979950659, guid: 3cb9c01179b24ac44bc4e89de23ff6c5, type: 3}

@@ -13,7 +13,7 @@ namespace Game.Core
             if(Camera.main != null) _camera = Camera.main;
         }
 
-        void Update()
+        void LateUpdate()
         {
             if(_camera!= null && this!= null)
                 this.transform.forward = _camera.transform.forward;
